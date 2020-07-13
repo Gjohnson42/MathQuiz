@@ -16,11 +16,18 @@ namespace MathQuiz
         //Random class instantiation used for developing RNG Values
         Random randomizer = new Random();
 
-        //Addition Variables
+        //global constants
         const int MAX_ADDITION_VALUE = 50;
+        const int MAX_SUBTRACTION_VALUE = 100;
         const int INITIAL_TIMER_VALUE = 30;
+
+        //Addition Variables
         int addend1;
         int addend2;
+
+        //Subtraction Variables
+        int leftSubSide;
+        int rightSubSide;
 
         // Timer
         int timeLeft;
@@ -43,6 +50,20 @@ namespace MathQuiz
             //Setting the number entry controls to their defaults. 
             sumNumericUpDown.BackColor = Color.White;
             sumNumericUpDown.Enabled = true;
+            differenceNumericUpDown.BackColor = Color.White;
+            differenceNumericUpDown.Enabled = true;
+
+
+            //Same as the above, but for subtraction. 
+            leftSubSide = randomizer.Next(1, 1+ MAX_SUBTRACTION_VALUE);
+            rightSubSide = randomizer.Next(1, leftSubSide);
+            minusLeftLabel.Text = leftSubSide.ToString();
+            minusRightLabel.Text = rightSubSide.ToString();
+            differenceNumericUpDown.Value = 0;
+            
+            
+          
+
 
             //Initialize timer
             timeLeft = INITIAL_TIMER_VALUE;
@@ -56,6 +77,14 @@ namespace MathQuiz
                 {
                 return true;
                 }
+            else { return false; }
+        }
+        public bool checkAnswerDifference()
+        {
+            if ( differenceNumericUpDown.Value== ( leftSubSide- rightSubSide))
+            {
+                return true;
+            }
             else { return false; }
         }
 
@@ -101,13 +130,20 @@ namespace MathQuiz
                 timeLabel.Text = timeLeft + " seconds";
                 
                 //Per question checking
+                     //sum
                 if (checkAnswerSum()) 
                 { 
                     sumNumericUpDown.BackColor = Color.LawnGreen;
                     sumNumericUpDown.Enabled = false;
                 }
+                    //difference
+                if (checkAnswerDifference())
+                {
+                    differenceNumericUpDown.BackColor = Color.LawnGreen;
+                    differenceNumericUpDown.Enabled = false;
+                }
                 //Overall answer checking
-                if (checkAnswerSum()) 
+                if (checkAnswerSum() & checkAnswerDifference()) 
                 {
                     timer1.Stop();
                     messageBox.Text = "Congratulations, you answered all the questions correctly!";
@@ -146,5 +182,7 @@ namespace MathQuiz
         {
             answer_entry(sender, e);
         }
+
+        
     }
 }

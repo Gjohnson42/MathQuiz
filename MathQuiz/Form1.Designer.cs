@@ -143,6 +143,7 @@
             this.differenceNumericUpDown.Name = "differenceNumericUpDown";
             this.differenceNumericUpDown.Size = new System.Drawing.Size(100, 41);
             this.differenceNumericUpDown.TabIndex = 3;
+            this.differenceNumericUpDown.MouseClick += new System.Windows.Forms.MouseEventHandler(this.answer_entry);
             // 
             // label1
             // 
