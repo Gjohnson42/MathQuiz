@@ -53,5 +53,21 @@ namespace MathQuiz
             startTheQuiz();
             quizStartBtn.Enabled = false;
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void userNameTextBox1_TextChanged(object sender, EventArgs e)
+        {
+            User newUser = new User(userNameTextBox1.Text);
+            userNameLabel.Text = newUser.makeGreeting();
+        }
     }
 }

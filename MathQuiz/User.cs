@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace MathQuiz
 {
-    class User
+    public class User
     {
         //Single argument constructor that takes in a name. 
-        User(string passedInUserName) 
+       public User(string passedInUserName) 
         {
             UserName = passedInUserName;
         }

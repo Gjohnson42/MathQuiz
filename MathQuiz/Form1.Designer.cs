@@ -51,6 +51,8 @@
             this.label7 = new System.Windows.Forms.Label();
             this.dividedLeftLabel = new System.Windows.Forms.Label();
             this.quizStartBtn = new System.Windows.Forms.Button();
+            this.userNameTextBox1 = new System.Windows.Forms.TextBox();
+            this.userNameLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.sumNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.differenceNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productNumericUpDown)).BeginInit();
@@ -282,11 +284,31 @@
             this.quizStartBtn.UseVisualStyleBackColor = true;
             this.quizStartBtn.Click += new System.EventHandler(this.quizStartBtn_Click);
             // 
+            // userNameTextBox1
+            // 
+            this.userNameTextBox1.Location = new System.Drawing.Point(18, 326);
+            this.userNameTextBox1.Name = "userNameTextBox1";
+            this.userNameTextBox1.Size = new System.Drawing.Size(120, 22);
+            this.userNameTextBox1.TabIndex = 41;
+            this.userNameTextBox1.Text = "Enter User Name";
+            this.userNameTextBox1.TextChanged += new System.EventHandler(this.userNameTextBox1_TextChanged);
+            // 
+            // userNameLabel
+            // 
+            this.userNameLabel.AutoSize = true;
+            this.userNameLabel.Location = new System.Drawing.Point(200, 326);
+            this.userNameLabel.Name = "userNameLabel";
+            this.userNameLabel.Size = new System.Drawing.Size(0, 17);
+            this.userNameLabel.TabIndex = 42;
+            this.userNameLabel.Click += new System.EventHandler(this.label6_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(378, 449);
+            this.Controls.Add(this.userNameLabel);
+            this.Controls.Add(this.userNameTextBox1);
             this.Controls.Add(this.quizStartBtn);
             this.Controls.Add(this.quotientNumericUpDown);
             this.Controls.Add(this.label4);
@@ -314,6 +336,7 @@
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.sumNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.differenceNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productNumericUpDown)).EndInit();
@@ -348,6 +371,8 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label dividedLeftLabel;
         private System.Windows.Forms.Button quizStartBtn;
+        private System.Windows.Forms.TextBox userNameTextBox1;
+        private System.Windows.Forms.Label userNameLabel;
     }
 }
 
