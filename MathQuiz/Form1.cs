@@ -40,11 +40,23 @@ namespace MathQuiz
             plusRightLabel.Text = addend2.ToString();
             sumNumericUpDown.Value = 0;
 
+            //Setting the number entry controls to their defaults. 
+            sumNumericUpDown.BackColor = Color.White;
+            sumNumericUpDown.Enabled = true;
+
             //Initialize timer
             timeLeft = INITIAL_TIMER_VALUE;
             timeLabel.Text = INITIAL_TIMER_VALUE + " seconds";
             timer1.Start();
 
+        }
+        public bool checkAnswerSum() 
+        {
+            if (sumNumericUpDown.Value == (addend2 + addend1)) 
+                {
+                return true;
+                }
+            else { return false; }
         }
 
         private void plusSignLabel_Click(object sender, EventArgs e)
@@ -87,6 +99,21 @@ namespace MathQuiz
                 //Update time and display it
                 timeLeft--;
                 timeLabel.Text = timeLeft + " seconds";
+                
+                //Per question checking
+                if (checkAnswerSum()) 
+                { 
+                    sumNumericUpDown.BackColor = Color.LawnGreen;
+                    sumNumericUpDown.Enabled = false;
+                }
+                //Overall answer checking
+                if (checkAnswerSum()) 
+                {
+                    timer1.Stop();
+                    messageBox.Text = "Congratulations, you answered all the questions correctly!";
+                    quizStartBtn.Enabled = true;
+                }
+
             }
             else 
             //The user ran out of time - display a message, fill in answers, reset the start button
@@ -95,6 +122,29 @@ namespace MathQuiz
                 sumNumericUpDown.Value = addend1 + addend2;
                 quizStartBtn.Enabled = true;
             }
+        }
+
+        private void sumNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+           
+        }
+
+        //Generic event handler for entering in an answer to a numeric updown box. 
+        private void answer_entry(object sender, EventArgs e)
+        {
+            NumericUpDown answerBox = sender as NumericUpDown;
+
+            //Select the whole contents to allow for them to be changed. 
+            if (answerBox != null)
+            {
+                int lengthOfAnswer = answerBox.Value.ToString().Length;
+                answerBox.Select(0, lengthOfAnswer);
+            }
+        }
+
+        private void sumNumericUpDown_MouseClick(object sender, MouseEventArgs e)
+        {
+            answer_entry(sender, e);
         }
     }
 }

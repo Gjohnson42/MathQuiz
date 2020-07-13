@@ -55,6 +55,7 @@
             this.userNameTextBox1 = new System.Windows.Forms.TextBox();
             this.userNameLabel = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.messageBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.sumNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.differenceNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productNumericUpDown)).BeginInit();
@@ -131,6 +132,9 @@
             this.sumNumericUpDown.Name = "sumNumericUpDown";
             this.sumNumericUpDown.Size = new System.Drawing.Size(100, 41);
             this.sumNumericUpDown.TabIndex = 2;
+            this.sumNumericUpDown.ValueChanged += new System.EventHandler(this.sumNumericUpDown_ValueChanged);
+            this.sumNumericUpDown.Enter += new System.EventHandler(this.answer_entry);
+            this.sumNumericUpDown.MouseClick += new System.Windows.Forms.MouseEventHandler(this.sumNumericUpDown_MouseClick);
             // 
             // differenceNumericUpDown
             // 
@@ -313,11 +317,22 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // messageBox
+            // 
+            this.messageBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.messageBox.Location = new System.Drawing.Point(18, 354);
+            this.messageBox.Multiline = true;
+            this.messageBox.Name = "messageBox";
+            this.messageBox.ReadOnly = true;
+            this.messageBox.Size = new System.Drawing.Size(348, 38);
+            this.messageBox.TabIndex = 43;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(378, 449);
+            this.Controls.Add(this.messageBox);
             this.Controls.Add(this.userNameLabel);
             this.Controls.Add(this.userNameTextBox1);
             this.Controls.Add(this.quizStartBtn);
@@ -346,7 +361,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MaximizeBox = false;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Math Quiz";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.sumNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.differenceNumericUpDown)).EndInit();
@@ -385,6 +400,7 @@
         private System.Windows.Forms.TextBox userNameTextBox1;
         private System.Windows.Forms.Label userNameLabel;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.TextBox messageBox;
     }
 }
 
