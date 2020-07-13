@@ -33,7 +33,9 @@
             this.plusLeftLabel = new System.Windows.Forms.Label();
             this.plusSignLabel = new System.Windows.Forms.Label();
             this.plusRightLabel = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.equalsLabel = new System.Windows.Forms.Label();
+            this.sumNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.sumNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // timeLeftLabel
@@ -57,49 +59,59 @@
             // plusLeftLabel
             // 
             this.plusLeftLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.plusLeftLabel.Location = new System.Drawing.Point(50, 75);
+            this.plusLeftLabel.Location = new System.Drawing.Point(12, 75);
             this.plusLeftLabel.Name = "plusLeftLabel";
             this.plusLeftLabel.Size = new System.Drawing.Size(60, 50);
             this.plusLeftLabel.TabIndex = 2;
-            this.plusLeftLabel.Text = "label1";
+            this.plusLeftLabel.Text = "?";
             this.plusLeftLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // plusSignLabel
             // 
             this.plusSignLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.plusSignLabel.Location = new System.Drawing.Point(116, 75);
+            this.plusSignLabel.Location = new System.Drawing.Point(78, 75);
             this.plusSignLabel.Name = "plusSignLabel";
             this.plusSignLabel.Size = new System.Drawing.Size(60, 50);
             this.plusSignLabel.TabIndex = 3;
             this.plusSignLabel.Text = "+";
             this.plusSignLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.plusSignLabel.Click += new System.EventHandler(this.plusSignLabel_Click);
             // 
             // plusRightLabel
             // 
             this.plusRightLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.plusRightLabel.Location = new System.Drawing.Point(182, 75);
+            this.plusRightLabel.Location = new System.Drawing.Point(144, 75);
             this.plusRightLabel.Name = "plusRightLabel";
             this.plusRightLabel.Size = new System.Drawing.Size(60, 50);
             this.plusRightLabel.TabIndex = 4;
-            this.plusRightLabel.Text = "label1";
+            this.plusRightLabel.Text = "?";
             this.plusRightLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label3
+            // equalsLabel
             // 
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(248, 75);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(60, 50);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "label1";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.equalsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.equalsLabel.Location = new System.Drawing.Point(194, 75);
+            this.equalsLabel.Name = "equalsLabel";
+            this.equalsLabel.Size = new System.Drawing.Size(60, 50);
+            this.equalsLabel.TabIndex = 5;
+            this.equalsLabel.Text = "=";
+            this.equalsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // sumNumericUpDown
+            // 
+            this.sumNumericUpDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sumNumericUpDown.Location = new System.Drawing.Point(266, 80);
+            this.sumNumericUpDown.Name = "sumNumericUpDown";
+            this.sumNumericUpDown.Size = new System.Drawing.Size(100, 41);
+            this.sumNumericUpDown.TabIndex = 6;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(382, 453);
-            this.Controls.Add(this.label3);
+            this.ClientSize = new System.Drawing.Size(378, 449);
+            this.Controls.Add(this.sumNumericUpDown);
+            this.Controls.Add(this.equalsLabel);
             this.Controls.Add(this.plusRightLabel);
             this.Controls.Add(this.plusSignLabel);
             this.Controls.Add(this.plusLeftLabel);
@@ -109,6 +121,7 @@
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)(this.sumNumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -121,7 +134,8 @@
         private System.Windows.Forms.Label plusLeftLabel;
         private System.Windows.Forms.Label plusSignLabel;
         private System.Windows.Forms.Label plusRightLabel;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label equalsLabel;
+        private System.Windows.Forms.NumericUpDown sumNumericUpDown;
     }
 }
 

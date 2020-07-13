@@ -16,5 +16,10 @@ namespace MathQuiz
         {
             InitializeComponent();
         }
+
+        private void plusSignLabel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
