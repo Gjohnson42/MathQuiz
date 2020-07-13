@@ -26,5 +26,10 @@ namespace MathQuiz
         {
 
         }
+
+        private void quizStartBtn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
