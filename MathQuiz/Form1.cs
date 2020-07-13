@@ -18,8 +18,12 @@ namespace MathQuiz
 
         //Addition Variables
         const int MAX_ADDITION_VALUE = 50;
+        const int INITIAL_TIMER_VALUE = 30;
         int addend1;
         int addend2;
+
+        // Timer
+        int timeLeft;
         public Form1()
         {
             InitializeComponent();
@@ -35,6 +39,11 @@ namespace MathQuiz
             plusLeftLabel.Text = addend1.ToString();
             plusRightLabel.Text = addend2.ToString();
             sumNumericUpDown.Value = 0;
+
+            //Initialize timer
+            timeLeft = INITIAL_TIMER_VALUE;
+            timeLabel.Text = INITIAL_TIMER_VALUE + " seconds";
+            timer1.Start();
 
         }
 
@@ -66,8 +75,26 @@ namespace MathQuiz
 
         private void userNameTextBox1_TextChanged(object sender, EventArgs e)
         {
+            
             User newUser = new User(userNameTextBox1.Text);
             userNameLabel.Text = newUser.makeGreeting();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (timeLeft > 0)
+            {
+                //Update time and display it
+                timeLeft--;
+                timeLabel.Text = timeLeft + " seconds";
+            }
+            else 
+            //The user ran out of time - display a message, fill in answers, reset the start button
+            {
+                timeLabel.Text = "Time's Up!";
+                sumNumericUpDown.Value = addend1 + addend2;
+                quizStartBtn.Enabled = true;
+            }
         }
     }
 }

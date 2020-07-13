@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.timeLeftLabel = new System.Windows.Forms.Label();
             this.timeLabel = new System.Windows.Forms.Label();
             this.plusLeftLabel = new System.Windows.Forms.Label();
@@ -53,6 +54,7 @@
             this.quizStartBtn = new System.Windows.Forms.Button();
             this.userNameTextBox1 = new System.Windows.Forms.TextBox();
             this.userNameLabel = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.sumNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.differenceNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productNumericUpDown)).BeginInit();
@@ -73,10 +75,12 @@
             // timeLabel
             // 
             this.timeLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.timeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.timeLabel.Location = new System.Drawing.Point(166, 19);
             this.timeLabel.Name = "timeLabel";
             this.timeLabel.Size = new System.Drawing.Size(200, 30);
             this.timeLabel.TabIndex = 1;
+            this.timeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.timeLabel.Click += new System.EventHandler(this.timeLabel_Click);
             // 
             // plusLeftLabel
@@ -287,6 +291,7 @@
             // userNameTextBox1
             // 
             this.userNameTextBox1.Location = new System.Drawing.Point(18, 326);
+            this.userNameTextBox1.Multiline = true;
             this.userNameTextBox1.Name = "userNameTextBox1";
             this.userNameTextBox1.Size = new System.Drawing.Size(120, 22);
             this.userNameTextBox1.TabIndex = 41;
@@ -295,12 +300,18 @@
             // 
             // userNameLabel
             // 
+            this.userNameLabel.AutoEllipsis = true;
             this.userNameLabel.AutoSize = true;
-            this.userNameLabel.Location = new System.Drawing.Point(200, 326);
+            this.userNameLabel.Location = new System.Drawing.Point(204, 326);
             this.userNameLabel.Name = "userNameLabel";
             this.userNameLabel.Size = new System.Drawing.Size(0, 17);
             this.userNameLabel.TabIndex = 42;
             this.userNameLabel.Click += new System.EventHandler(this.label6_Click);
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // Form1
             // 
@@ -373,6 +384,7 @@
         private System.Windows.Forms.Button quizStartBtn;
         private System.Windows.Forms.TextBox userNameTextBox1;
         private System.Windows.Forms.Label userNameLabel;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 
