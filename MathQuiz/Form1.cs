@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,15 +20,22 @@ namespace MathQuiz
         //global constants
         const int MAX_ADDITION_VALUE = 50;
         const int MAX_SUBTRACTION_VALUE = 100;
+        const int MAX_MULTIPLICATION_VALUE = 10;
+        const int MAX_QUOTIENT_VALUE = 10;
         const int INITIAL_TIMER_VALUE = 30;
 
         //Addition Variables
         int addend1;
         int addend2;
-
         //Subtraction Variables
         int leftSubSide;
         int rightSubSide;
+        //Multiplication Variables
+        int leftFactor;
+        int rightFactor;
+        //Division Variables
+        int leftDiv;
+        int rightDiv;
 
         // Timer
         int timeLeft;
@@ -36,34 +44,48 @@ namespace MathQuiz
             InitializeComponent();
         }
         //Form Methods
-        public void startTheQuiz() 
+        public void StartTheQuiz() 
         {
             //Sets up a value for the addition arguments, changes the labels, and resets the sum to zero.
             addend1 = randomizer.Next(MAX_ADDITION_VALUE+1);
             addend2 = randomizer.Next(MAX_ADDITION_VALUE + 1);
-
-            //Changing labels
             plusLeftLabel.Text = addend1.ToString();
             plusRightLabel.Text = addend2.ToString();
             sumNumericUpDown.Value = 0;
-
-            //Setting the number entry controls to their defaults. 
-            sumNumericUpDown.BackColor = Color.White;
-            sumNumericUpDown.Enabled = true;
-            differenceNumericUpDown.BackColor = Color.White;
-            differenceNumericUpDown.Enabled = true;
-
-
-            //Same as the above, but for subtraction. 
-            leftSubSide = randomizer.Next(1, 1+ MAX_SUBTRACTION_VALUE);
+            //Subtraction Value Initialization
+            leftSubSide = randomizer.Next(1, 1 + MAX_SUBTRACTION_VALUE);
             rightSubSide = randomizer.Next(1, leftSubSide);
             minusLeftLabel.Text = leftSubSide.ToString();
             minusRightLabel.Text = rightSubSide.ToString();
             differenceNumericUpDown.Value = 0;
-            
-            
-          
+            //Multiplication Value Initialization
+            leftFactor = randomizer.Next(1, MAX_MULTIPLICATION_VALUE+1);
+            rightFactor = randomizer.Next(1, MAX_MULTIPLICATION_VALUE+1);
+            timesLeftLabel.Text = leftFactor.ToString();
+            timesRightLabel.Text = rightFactor.ToString();
+            productNumericUpDown.Value = 0;
+            ////Division Value Initialization - this decides on a random quotient, then generates the
+            //dividend and divisor required to implement it. 
+            int tempQuotient = randomizer.Next(2, MAX_QUOTIENT_VALUE + 1);
+            rightDiv = randomizer.Next(2, MAX_QUOTIENT_VALUE + 1);
+            leftDiv = rightDiv * tempQuotient;
+            dividedLeftLabel.Text = leftDiv.ToString();
+            dividedRightLabel.Text = rightDiv.ToString();
+            quotientNumericUpDown.Value = 0;
 
+            //Setting the number entry controls to their defaults.
+            //Addition
+            sumNumericUpDown.BackColor = Color.White;
+            sumNumericUpDown.Enabled = true;
+            //Subtraction
+            differenceNumericUpDown.BackColor = Color.White;
+            differenceNumericUpDown.Enabled = true;
+            //Multiplication
+            productNumericUpDown.BackColor = Color.White;
+            productNumericUpDown.Enabled = true;
+            //Division
+            quotientNumericUpDown.BackColor = Color.White;
+            quotientNumericUpDown.Enabled = true;
 
             //Initialize timer
             timeLeft = INITIAL_TIMER_VALUE;
@@ -71,6 +93,7 @@ namespace MathQuiz
             timer1.Start();
 
         }
+        //Answer checking methods
         public bool checkAnswerSum() 
         {
             if (sumNumericUpDown.Value == (addend2 + addend1)) 
@@ -81,13 +104,28 @@ namespace MathQuiz
         }
         public bool checkAnswerDifference()
         {
-            if ( differenceNumericUpDown.Value== ( leftSubSide- rightSubSide))
+            if ( differenceNumericUpDown.Value == ( leftSubSide- rightSubSide))
             {
                 return true;
             }
             else { return false; }
         }
-
+        public bool checkAnswerProduct()
+        {
+            if (productNumericUpDown.Value == (leftFactor * rightFactor))
+            {
+                return true;
+            }
+            else { return false; }
+        }
+        public bool checkAnswerQuotient()
+        {
+            if (quotientNumericUpDown.Value == (leftDiv / rightDiv))
+            {
+                return true;
+            }
+            else { return false; }
+        }
         private void plusSignLabel_Click(object sender, EventArgs e)
         {
 
@@ -100,7 +138,7 @@ namespace MathQuiz
 
         private void quizStartBtn_Click(object sender, EventArgs e)
         {
-            startTheQuiz();
+            StartTheQuiz();
             quizStartBtn.Enabled = false;
         }
 
@@ -120,7 +158,6 @@ namespace MathQuiz
             User newUser = new User(userNameTextBox1.Text);
             userNameLabel.Text = newUser.makeGreeting();
         }
-
         private void timer1_Tick(object sender, EventArgs e)
         {
             if (timeLeft > 0)
@@ -128,22 +165,29 @@ namespace MathQuiz
                 //Update time and display it
                 timeLeft--;
                 timeLabel.Text = timeLeft + " seconds";
-                
                 //Per question checking
-                     //sum
                 if (checkAnswerSum()) 
                 { 
                     sumNumericUpDown.BackColor = Color.LawnGreen;
                     sumNumericUpDown.Enabled = false;
                 }
-                    //difference
                 if (checkAnswerDifference())
                 {
                     differenceNumericUpDown.BackColor = Color.LawnGreen;
                     differenceNumericUpDown.Enabled = false;
                 }
+                if (checkAnswerProduct())
+                {
+                    productNumericUpDown.BackColor = Color.LawnGreen;
+                    productNumericUpDown.Enabled = false;
+                }
+                if (checkAnswerQuotient())
+                {
+                    quotientNumericUpDown.BackColor = Color.LawnGreen;
+                    quotientNumericUpDown.Enabled = false;
+                }
                 //Overall answer checking
-                if (checkAnswerSum() & checkAnswerDifference()) 
+                if (checkAnswerSum() & checkAnswerDifference() & checkAnswerProduct() & checkAnswerQuotient()) 
                 {
                     timer1.Stop();
                     messageBox.Text = "Congratulations, you answered all the questions correctly!";
@@ -165,7 +209,8 @@ namespace MathQuiz
            
         }
 
-        //Generic event handler for entering in an answer to a numeric updown box. 
+        //Generic event handler for entering in an answer to a numeric updown box. It selects
+        //the text contents of the answerbox, making it so the user doesn't need to highlight it. 
         private void answer_entry(object sender, EventArgs e)
         {
             NumericUpDown answerBox = sender as NumericUpDown;
@@ -177,12 +222,20 @@ namespace MathQuiz
                 answerBox.Select(0, lengthOfAnswer);
             }
         }
-
+        //Mouse Click Event Handlers
         private void sumNumericUpDown_MouseClick(object sender, MouseEventArgs e)
         {
             answer_entry(sender, e);
         }
 
-        
+        private void quotientNumericUpDown_MouseClick(object sender, MouseEventArgs e)
+        {
+            answer_entry(sender, e);
+        }
+
+        private void productNumericUpDown_MouseClick(object sender, MouseEventArgs e)
+        {
+            answer_entry(sender, e);
+        }
     }
 }
